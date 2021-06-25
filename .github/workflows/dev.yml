@@ -1,11 +1,6 @@
 name: dev CI
 
 on:
-  push:
-    branches: [ dev ]
-  pull_request:
-    branches: [ dev, master ]
-
   schedule:
     - cron: "6 * * * *" # run at 00:00 AM IST
 
