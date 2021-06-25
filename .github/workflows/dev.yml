@@ -7,7 +7,7 @@ on:
     branches: [ dev, master ]
 
   schedule:
-    - cron: "30 18 * * *" # run at 00:00 AM IST
+    - cron: "5 * * * *" # run at 00:00 AM IST
 
 jobs:
   g8:
@@ -66,6 +66,7 @@ jobs:
       - name: Giter8 Compile
         run: |
           echo "Running build for branch ${BRANCH_NAME}"
+          echo "schedule event name ${{ github.event_name }}!"
           g8 tmtsoftware/esw-backend-template.g8 --name=appserver --branch ${BRANCH_NAME}
           cd appserver
           sbtn clean 
