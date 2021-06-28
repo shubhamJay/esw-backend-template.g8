@@ -1,6 +1,8 @@
 name: dev CI
 
 on:
+  push:
+    branches: [master]
   schedule:
     - cron: "5/6 * * * *" # run at 00:00 AM IST
 
@@ -18,7 +20,7 @@ jobs:
         with:
           jvm: 11
           apps: sbt sbtn
-#      - uses: coursier/cache-action@v5
+      - uses: coursier/cache-action@v5
 
       - name: Install giter8
         run: |
@@ -35,13 +37,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-coursier-
 
-#      - name: Cache ~/.sbt
-#       uses: actions/cache@v1
-#        with:
-#          path: ~/.sbt
-#          key: ${{ runner.os }}-sbt-${{ hashFiles('project/build.properties') }}
-#          restore-keys: |
-#            ${{ runner.os }}-sbt-
+      - name: Cache ~/.sbt
+       uses: actions/cache@v1
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('project/build.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-sbt-
 
       - name: Publish Local checked out ESW repo
         run: |
