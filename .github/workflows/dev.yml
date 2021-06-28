@@ -1,9 +1,7 @@
 name: dev CI
 
 on:
-  push:
-    branches: [master]
-  schedule:
+ schedule:
     - cron: "5/6 * * * *" # run at 00:00 AM IST
 
 jobs:
@@ -62,7 +60,7 @@ jobs:
         
       - name: Extract branch name (trigger - schedule)
         if: github.event_name == 'schedule'
-        run: echo "BRANCH_NAME=master" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=dev" >> $GITHUB_ENV
 
       - name: Giter8 Compile
         run: |
